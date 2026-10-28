@@ -22,7 +22,7 @@ document.getElementById("time").textContent = timeLeft;
 document.getElementById("message").textContent = "Collect the clean water drops!";
 
   // Create new drops every second (1000 milliseconds)
-  dropMaker = setInterval(createDrop, 1000);
+  dropMaker = setInterval(createDrop, 600);
   timer = setInterval(function () {
   timeLeft--;
   document.getElementById("time").textContent = timeLeft;
@@ -88,10 +88,10 @@ if (isDirty) {
 
   drop.remove();
 
-  if (score >= 15) {
-    winGame();
-  }
-});
+  if (score >= 20) {
+  winGame();
+}
+  });
 
   // Remove drops that reach the bottom (weren't clicked)
   drop.addEventListener("animationend", () => {
@@ -106,8 +106,18 @@ function endGame() {
 
   document.getElementById("game-container").innerHTML = "";
 
-  document.getElementById("message").textContent =
-    "Time's up! Your final score is " + score + ".";
+  
+const loseMessages = [
+  "💧 Every drop counts! Give it another try!",
+  "🌍 The journey to clean water continues! Try again!",
+  "💙 Don't give up! You can make a difference!",
+  "⏰ Time's up! Keep practicing and try again!"
+];
+
+document.getElementById("message").textContent =
+  loseMessages[Math.floor(Math.random() * loseMessages.length)]
+  + " Final score: " + score + ".";
+
 }
 
 function winGame() {
@@ -118,8 +128,18 @@ function winGame() {
 
   document.getElementById("game-container").innerHTML = "";
 
-  document.getElementById("message").textContent =
-    "🎉 You collected enough clean water! You win! 🎉";
+  
+const winMessages = [
+  "🎉 Amazing job! You collected enough clean water!",
+  "💧 Water hero! You helped bring clean water to the community!",
+  "🌍 Incredible! Every drop makes a difference!",
+  "🏆 You did it! Clean water for the win!"
+];
+
+document.getElementById("message").textContent =
+  winMessages[Math.floor(Math.random() * winMessages.length)];
+    "🎉 You collected enough clean water! You win! 🎉"; 
+
 
   createConfetti();
 }

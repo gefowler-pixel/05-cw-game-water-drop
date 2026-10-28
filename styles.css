@@ -299,3 +299,23 @@ body {
   border-radius: 18px;
   overflow: hidden;
 }
+
+@media (max-width: 600px) {
+  .score-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .score-panel > * {
+    flex: 0 1 auto;
+  }
+
+  #start-btn,
+  #reset-btn {
+    display: inline-block;
+    padding: 10px 14px;
+  }
+}
