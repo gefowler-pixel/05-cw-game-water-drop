@@ -5,6 +5,25 @@ let score = 0;
 let timeLeft = 30;
 let timer;
 
+const collectSound = new Audio("img/water.drop.mp3");
+
+const milestones = [
+  { score: 5, message: "💧 Great start! Keep collecting clean water!" },
+  { score: 10, message: "🌍 You're making a difference! Keep going!" },
+  { score: 15, message: "💙 Almost there! Every drop counts!" }
+];
+
+
+
+const difficultySettings = {
+  easy: { time: 30, goal: 10, speed: 800 },
+  normal: { time: 30, goal: 20, speed: 600 },
+  hard: { time: 25, goal: 25, speed: 450 }
+};
+
+let currentDifficulty = difficultySettings.normal;
+
+
 // Wait for button click to start the game
 document.getElementById("start-btn").addEventListener("click", startGame);
 document.getElementById("reset-btn").addEventListener("click", resetGame); 
@@ -13,16 +32,21 @@ function startGame() {
   // Prevent multiple games from running at once
   if (gameRunning) return;
 
-  gameRunning = true;
-  score = 0;
-timeLeft = 30;
+  
+const selectedDifficulty = document.getElementById("difficulty").value;
+currentDifficulty = difficultySettings[selectedDifficulty];
+
+gameRunning = true;
+score = 0;
+timeLeft = currentDifficulty.time;
+
 
 document.getElementById("score").textContent = score;
 document.getElementById("time").textContent = timeLeft;
 document.getElementById("message").textContent = "Collect the clean water drops!";
 
   // Create new drops every second (1000 milliseconds)
-  dropMaker = setInterval(createDrop, 600);
+  dropMaker = setInterval(createDrop, currentDifficulty.speed);
   timer = setInterval(function () {
   timeLeft--;
   document.getElementById("time").textContent = timeLeft;
@@ -80,15 +104,27 @@ if (isDirty) {
   } else {
     score += 1;
 
-    document.getElementById("message").textContent =
-      "Clean water collected! +1 point";
+collectSound.currentTime = 0;
+collectSound.play();
+
+
+    
+const milestone = milestones.find(m => m.score === score);
+
+if (milestone) {
+  document.getElementById("message").textContent = milestone.message;
+} else {
+  document.getElementById("message").textContent =
+    "Clean water collected! +1 point";
+}
+
   }
 
   document.getElementById("score").textContent = score;
 
   drop.remove();
 
-  if (score >= 20) {
+  if (score >= currentDifficulty.goal) {
   winGame();
 }
   });

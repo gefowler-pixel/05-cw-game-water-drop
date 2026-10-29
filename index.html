@@ -11,6 +11,14 @@
         <h1 class="game-title">Water Drop Challange</h1>
         <p class="game-tagline">Catch the good drops, avoid the bad ones!</p>
         <div class="score-panel">
+
+<label for="difficulty">Difficulty:</label>
+<select id="difficulty">
+  <option value="easy">Easy</option>
+  <option value="normal" selected>Normal</option>
+  <option value="hard">Hard</option>
+</select>
+
             <div class="score">Score: <span id="score">0</span></div>
             <div class="timer">Time: <span id="time">30</span>s</div>
             <button id="start-btn">Start Game</button>
@@ -24,6 +32,12 @@
 </div>
     </div>
     
+<footer class="game-footer">
+  <p>Every drop makes a difference!</p>
+  <a href="https://www.charitywater.org/" target="_blank">Learn About charity: water</a>
+  <a href="https://www.charitywater.org/donate" target="_blank">Donate to Clean Water</a>
+</footer>
+
     <script src="script.js"></script>
 </body>
 </html>

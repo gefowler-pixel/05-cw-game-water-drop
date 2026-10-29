@@ -30,7 +30,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
+    font-family: "Avenir", "Proxima Nova", Arial, sans-serif;
 }
 
 .game-wrapper {
@@ -318,4 +318,38 @@ body {
     display: inline-block;
     padding: 10px 14px;
   }
+}
+
+body {
+  flex-direction: column;
+}
+
+.game-footer {
+  text-align: center;
+  margin: 25px auto;
+  padding: 15px;
+}
+
+.game-footer a {
+  display: inline-block;
+  margin: 8px 12px;
+  color: #0077b6;
+  text-decoration: underline;
+}
+
+body {
+  flex-direction: column;
+}
+
+.game-footer {
+  text-align: center;
+  margin: 25px auto;
+  padding: 15px;
+}
+
+.game-footer a {
+  display: inline-block;
+  margin: 8px 12px;
+  color: #0077b6;
+  text-decoration: underline;
 }
